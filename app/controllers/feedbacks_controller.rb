@@ -43,6 +43,7 @@ class FeedbacksController < ApplicationController
 
   # GET /feedbacks/1/edit
   def edit
+    binding.pry
     respond_to do |format|
       format.html
       format.json { render json: @feedback }
@@ -51,6 +52,7 @@ class FeedbacksController < ApplicationController
 
   # GET /feedbacks/1/edit_additional
   def edit_additional
+    binding.pry
     respond_to do |format|
       format.html
       format.json { render json: @feedback }
@@ -60,8 +62,10 @@ class FeedbacksController < ApplicationController
   # POST /feedbacks
   # POST /feedbacks.json
   def create
+
     @feedback = @review.feedbacks.build(params[:feedback])
     @feedback.user = current_user
+    binding.pry
     respond_to do |format|
       if @feedback.save
         format.html { execute_button_action(format) }
@@ -80,6 +84,7 @@ class FeedbacksController < ApplicationController
   # PUT /feedbacks/1
   # PUT /feedbacks/1.json
   def update
+    binding.pry
     respond_to do |format|
       if @feedback.update_attributes(params[:feedback])
         format.html { execute_button_action(format) }
@@ -140,6 +145,7 @@ class FeedbacksController < ApplicationController
   end
 
   def execute_button_action(format)
+    binding.pry
     if params[:submit_final_button]
       @feedback.submit_final
       flash[:success] = 'Feedback was submitted.'

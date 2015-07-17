@@ -172,6 +172,7 @@ describe "Feedback pages", :type => :feature do
     end
 
     it "saves as draft if 'Save Feedback' is clicked" do
+      binding.pry
       page.find("#save-feedback-button").click
       feedback = Feedback.last
       current_path.should == edit_additional_review_feedback_path(review, feedback)
